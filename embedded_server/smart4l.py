@@ -1,4 +1,3 @@
-#!/usr/bin/env python3
 # -*- coding: utf-8 -*-
 __author__ = "cbarange"
 __license__ = "MIT"
@@ -18,9 +17,9 @@ from flask import Flask
 from flask import jsonify
 
 # Custom Modules
-from embedded_server.sensor_camera_module.DHT11 import DHT11
-from embedded_server.smart4l_service.utils import Message, Status
 
+from smart4l_service.utils import Message, Status
+from sensor_camera_module.DHT11 import DHT11
 
 class ServiceObjectInterface(abc.ABC):
     @abc.abstractmethod
@@ -154,7 +153,7 @@ if __name__ == "__main__":
 
     try:
         app.start()
-        flaskThread = start_flask("localhost", 80)
+        flaskThread = start_flask("localhost", 8001)
         # Si on sort de la boucle, l'exception KeyboardInterrupt n'est plus gérée
         # while not input() == Status.STOP.value:
         switcher = {
